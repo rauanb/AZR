@@ -1,5 +1,5 @@
 # AZR
-## Computação em Nuvem
+# 1 - Computação em Nuvem
 
 * Entrega de serviços de computação pela internet
 * Computação, armazenamento, banco de dados, Machine Learning e IA
@@ -36,3 +36,23 @@
   * sem responsabilidade de manter estrutura física
   * flexibilidade para aumentar recursos
   * flexibilidade para reduzir custos desativando serviços
+
+# 2 - Benefícios da Nuvem
+
+# 3 - Serviços
+
+# 4 - Arquitetura
+
+# 5 - Computação e Rede
+
+# 6 - Armazenamento
+
+# 7 - Identidade, Acesso e Segurança
+
+# 8 - Custos
+
+# 9 - Governança e Conformidade
+
+# 10 - Gerenciamento de Recursos
+
+# 11 - Monitoramento
