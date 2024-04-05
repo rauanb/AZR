@@ -1,4 +1,4 @@
-# AZR - 1/11
+# AZR - 2/11
 # 1 - Computação em Nuvem
 
 * Entrega de serviços de computação pela internet
@@ -38,6 +38,30 @@
   * flexibilidade para reduzir custos desativando serviços
 
 # 2 - Benefícios da Nuvem
+
+## Alta Disponibilidade
+
+* **Alta Disponibilidade:** medida em % de up time (SLA)
+  * 99% ~> 7.2h por mês de downtime
+  * 99.9% ~> 43min por mês de downtime
+  * 99.95%
+  * 99.99%
+  * cada serviço tem um SLA diferente
+* **Escalabilidade:** responder a picos de demanda
+  * reduzir recursos em períodos de baixa demanda ~> redução de custos
+  * **vertical:** alterar a capacidade de um recurso (CPU e RAM)
+  * **horizontal:** alterar a quantidade de recursos (automático ou manual)
+* **Confiabilidade:** distribuição global
+  * garantia em caso de falhas regionais
+  * resiliência: capacidade de se recuperar de falhas
+* **Previsibilidade:** de desempenho e custos
+  * desempenho: balanceamento de carga e dimensionamento automático
+  * custos: monitoramento e análise de dados
+* **Governança e Conformidade:** modelos de conjunto e auditoria
+* **Segurança:** prevenção automática de DDoS
+* **Gerenciamento:** controle dos recursos e formas de controlar
+  * controle: escalar automaticamente, monitorar...
+  * formas: web, cli, APIs e PowerShell
 
 # 3 - Serviços
 
