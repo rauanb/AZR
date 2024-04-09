@@ -1,4 +1,4 @@
-# AZR - 2/11
+# AZR - 6/11
 # 1 - Computação em Nuvem
 
 * Entrega de serviços de computação pela internet
@@ -39,8 +39,6 @@
 
 # 2 - Benefícios da Nuvem
 
-## Alta Disponibilidade
-
 * **Alta Disponibilidade:** medida em % de up time (SLA)
   * 99% ~> 7.2h por mês de downtime
   * 99.9% ~> 43min por mês de downtime
@@ -65,18 +63,267 @@
 
 # 3 - Serviços
 
+## Infrastructure as a Service 
+
+* provedor é responsável  por manter o hardware, conectividade e segurança física
+* usuário é reponsável por todo o resto, desde a instalação do SO
+* basicamente um aluguel de hardware na nuvem
+* **cenários:** migração lift-and-shift de on premises para cloud e ambientes de teste
+
+## Plataform as a Service
+
+* provedor é responsável pela instalação, licenciamento e manutenção do SO, banco de dados e ferramentas de desenvolvimento
+* semelhante a um computador no domínio: o departamento de TI (provedor) cuida das atualizações e SO
+* **cenários:** estrutura de desenvolvimento e Análise de Dados (BI)
+
+## Software as a Service
+
+* provedor é responsável por todo o ambiente
+* usuário é responsável somente pelos dados, dispositivos e permissões
+* **cenários:** softwares de emails, mensagens e finanças
+
 # 4 - Arquitetura
+
+* +100 serviços
+  * 25 always free
+  * vários 12 meses free
+  * **área restrita:** disponibiliçao temporária de recursos para aprendizado no Microsoft Learn
+* conta ~> assinaturas ~> grupos de recursos ~> recursos
+* **Zonas de Disponibilidade**
+  * datacenters separados dentro de uma região
+  * independentes
+  * conectados por fibra óptica de alta velocidade
+  * serviços que dão suporte:
+    * serviços fixados em uma zona
+    * serviços com redundância de zona
+    * serviços não regionais
+
+* **Região**
+  * 3 ou mais zonas de disponibilidade
+    * algumas regiões não dão suporte a Zonas de Disponibilidade
+  * alguns serviços são regionais
+* **Pares de Regiões**
+  * duplicação de conteúdo
+  * regiões a 300 milhas de distância
+  * alguns serviços não dão suporte
+  * em caso de interrupção ampla, uma região de cada par é priorizada para restauração da disponibilidade
+  * os dados residem na mesma geografia para fins de legislação
+    * com exceção ao sul do Brasil
+
+  * **Regiões Soberanas:** instâncias isoladas da instância principal do Azure (US Gov Virginia e Leste China)
+
+* **Recursos e Grupos**
+  * todo serviço é um recurso
+  * todo recurso está em um grupo de recursos
+  * um recurso pode ser movido de um grupo para outro
+  * aplicar regras a um grupo **~>** aplica a todos os recursos do grupo
+  * excluir um grupo exclui os recursos dele
+  * não podem ser aninhados
+
+* **Assinaturas**
+  * gerenciamento de recursos, acesso e cobrança
+  * limite por cobrança ou limite por controle de acesso
+  * separar acesso a recursos por departamentos
+  * separar ambiente de desenvolvimento e teste
+
+* **Grupos de Gerenciamentos**
+  * grupos de assinaturas
+  * aplicar regras ao grupo **~>** aplica a todas as assinaturas
+  * grupos de gerenciamento podem ser aninhados em até 6 níveis
 
 # 5 - Computação e Rede
 
+## Máquinas Virtuais
+
+* IaaS
+* ideal para configurações personalizadas de hospedagem
+* VM do zero ou imagens de VM pré-configuradas
+* **lift-and-shift:** criar uma imagem do servidor físico e subir em uma VM
+* **Extensão de Script Personalizada:** script para execução/instalação em uma  VM em funcionamento
+
+## Conjuntos de Escala de VM
+
+* criar, monitorar e gerenciar grupo de VMs
+* VMs idênticas com balanceamento de carga
+* configurar resposta automática por demanda ou por agendamento
+
+## Conjuntos de Disponibilidade de VM
+
+* prevenção à indisponibilidade
+* sem custo adicional
+* por domínio de atualização e domínio de falha
+* **atualização:** grupo de VMs que podem reiniciar ao mesmo tempo
+* **falha:** grupo de VMs por origem de energia e rede
+
+## Área de Trabalho Virtual
+
+* qualquer dispositivo ou via browser
+* usuários remotos
+* protege dados da empresa (arquivos não são salvos localmente)
+* **RBAC:** controle de acesso baseado em função
+* sessão única ou várias sessões (vários usuários na mesma VM)
+
+## Contêineres
+
+* PasS
+* instâncias de contêiner
+* aplicativos de contêiner: permite balanceamento de carga
+* Azure Kubernetes Service
+
+## Funções
+
+* serverless
+* execução em resposta a um evento (geralmente solicitações REST)
+* execução limitada a segundos
+* dimensionadas automaticamente a partir da demanda
+* sem estado (padrão) ou com estado (acompanhar atividade anterior)
+
+## Hospedagem de Aplicativo
+
+* hospedagem de aplicativo sem se preocupar com a infra
+* compatível com Windows e Linux
+* compatível com Azure DevOps, repositórios Git e pipelines
+* serviço HTTP para aplicativo Web, WebJobs, APIs REST e backends móveis
+* alta disponibilidade e balanceamento de carga
+
+## Rede Virtual
+
+* conecta recursos a outros, a usuários na internet e a computadores locais
+* extensão da rede local através de VPN ou do ExpressRoute (conexão privada direta, sem passar pela internet)
+* balanceador de carga
+* filtro de tráfego por grupo de segurança ou firewall
+* conectar redes virtuais pela backbone da microsoft (sem passar pela internet)
+* **NSG:** Network Security Group
+  * prioridades **menores** são executadas antes (só importa mesmo se houver sobreposição de portas)
+* **UDR:** User Defined Routes, controle das tabelas de roteamento
+
+## Gateway VPN
+
+* chave pré compartilhada
+* baseado em política **~>** IP
+* baseado em rota **~>** interface virtual (mais resilientes a alterações de topologia)
+* duas instâncias por padrão **~>** alta disponibilidade 
+  * uma ativa e a outra em espera
+  * ativo/ativo **~>** um IP público para cada
+* redundância de zona
+
+## ExpressRoute
+
+* não passa pela internet
+* conexão com a rede local se chama Circuito do ExpressRoute
+* cada local conectado com a nuvem tem um Curcuito
+* a conexão pode ser
+  * any to any **~>** VPN de IP
+  * Ethernet ponto a ponto
+  * conexão cruzada virtual por meio de um provedor
+* permite conectividade direta com alguns serviços
+* **conectividade global:** se ativada, permite a conexão de 2 redes locais através do ExpressRoute (sem passar pela internet)
+
+## DNS
+
+* rede anycast **~>** o servidor de DNS mais próximo responde a consulta (mais rápido)
+* compatível com RBAC
+* disponibiliza logs para monitoramento
+* compatível com domínios privados
+* não é possível comprar domínios no Azure DNS **~>** Serviço de Aplicativo ou terceiros
+
 # 6 - Armazenamento
+
+* cada conta de armazenamento tem um namespace exclusivo
+
+## Redundância
+
+* **Região Primária**
+
+  * replicada 3 vezes
+  * pode ser:
+    * redundância local (LRS): 1 datacenter, 11 9s de disponibilidade no ano
+    * redundância de zona (ZRS):3 zonas de disponibilidade, 12 9s de disponibilidade
+
+* **Região Secundária** (opcional)
+
+  * baseada nos pares de Regiões
+  * ao criar a conta de armazenamento e escolher a região primária, é definida a região secundária correspondente
+  * pode ser:
+    * redundância geográfica (GRS) **~>** LRS nas duas regiões, 16 9s
+    * redundância de zona geográfica (GZRS) **~>** ZRS na primária e LRS na secundária, 16 9s
+  * por padrão, a região secundária não permite acesso, a menos que
+    * seja iniciado failover ou
+    * seja ativado o acesso de leitura através do RA-GRS ou RA-GZRS 
+
+  * NÃO EXISTE SLA SOBRE O TEMPO PARA REPLICAR
+  * **RPO:** Objetivo de Ponto de Recuperação
+    * intervalo de tempo para sincrinização entre as redundâncias
+    * normalmente abaixo de 15 min
+
+## Blobs
+
+* Armazenamento por objetos (um arquivo é um blob)
+* Não estruturado **~>** sem restrição de tipos de dados
+* acessível por navegadores web (URL), API REST, PowerShell ou CLI do Azure
+* **cenários:** arquivos distribuídos, streaming, armazenamento de backups e de dados para análise
+* **camadas:**
+  * quente: acesso frequente **~>** imagens
+  * esporádico: menos frequentes e armazenados por pelo menos 30 dias **~>** faturas
+  * frio: pouco frequente e armazenados por pelo menso 90 dias
+  * acesso aos arquivos: acessados raramente, armazenados por pelo menos 180 dias e com latência flexível **~>** backups de longo prazo
+  * as camadas frio e acesso aos arquivos não estão disponíveis a nível de conta, mas as 4 estão disponíveis a nível de blob
+
+
+## Arquivos do Azure
+
+* compatilhamento via SMB ou NFS
+* fileserver como SaaS
+* gerenciável via web, PowerShell ou cmdlets **~>** scripts para automação
+
+## Filas do Azure
+
+* armazenamento de mensagens
+* até 64 KB por mensagem
+* usadas para criar lista de pendências de trabalho assíncrono
+* pode ser gatilho para disparar uma Functions
+
+## Discos do Azure
+
+* volumes em nível de bloco
+* gerenciados pela Azure
+* usados em VMs
+
+## Tabelas do Azure
+
+* dados estruturados NoSQL (não relacionais)
+
+## Migração para Azure
+
+* plataforma de migração unificada
+* iniciar, executar e acompanhar a migração
+* migrar de infra local para Azure
+* permite acesso a ferramentas de terceiros (ISVs, fornecedores independentes de software)
+* Descoberta e avaliação, Migração de Servidor, Assistente de Migração de Dados (SQL Server), Migração de Banco de Dados, Assistente de Migração do Serviço de Aplicativo e Data Box (grandes quantidade de dados offline)
+* Data Box: enviado dispositivo com capacidade de 80 TB
+  * pode ser usado para transferir dados locais para a nuvem
+  * pode ser usado para recuperação de desastre, copiando os dados da nuvem para o data box e enviando ele ao cliente para restauração
+* AzCopy: ferramenta cli para transferência de arquivos, sincronização e até envio para outras nuvens
+  * sincronização do tipo origem ~> destino, não bidirecional
+* Gerenciador de Armazenamento: software de desktop, gerenciador de arquivos que usa AzCopy no backend
+* Sincronização de Arquivos: instalado no fileserver local, faz a sincronização bidirecional
 
 # 7 - Identidade, Acesso e Segurança
 
+43min
+
 # 8 - Custos
+
+43min
 
 # 9 - Governança e Conformidade
 
+34min
+
 # 10 - Gerenciamento de Recursos
 
+22min
+
 # 11 - Monitoramento
+
+13min
