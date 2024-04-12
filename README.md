@@ -1,4 +1,4 @@
-# AZR - 6/11
+# AZR - 7/11
 # 1 - Computação em Nuvem
 
 * Entrega de serviços de computação pela internet
@@ -310,7 +310,58 @@
 
 # 7 - Identidade, Acesso e Segurança
 
-43min
+## Entra ID
+
+* é o AD na nuvem
+* pode se conectar ao AD local para adição de recursos
+  * através do Entra Connect
+  * usado para investigar tentativas de login suspeitas
+* autenticação, Single Sing On
+* permite o acesso somente por dispositivos conhecidos, independente da conta de usuário
+
+## Entra Domain Services
+
+* controlador de domínio sem precisar implantar, gerenciar ou aplicar patches
+* replicação, criptografia e backups automáticos
+
+* Autenticação: confirmar a identidade da pessoa, serviço ou dispositivo
+
+* SSO: uma única identidade para acessar diversos serviços de provedores diferentes
+* MFA: algo que o usuário saiba (pergunta), algo que o usuário tenha (código no email ou celular) ou algo que o usuário seja (biometria ou reconhecimento facial)
+* Autenticação sem senha: pode ser configurada depois que dispositivo é reconhecido
+  * Windows Hello, Microsoft Authenticador ou chaves FIDO2
+* Identidades Externas: clientes ou fornecedores, podem trazer sua identidade de outro gerenciador como Google ou Facebook
+* Acesso condicional: se o usuário está logando de um novo dispositivo, ou de uma nova localização, pode ser pedido outro fator de autenticação ou pode ser bloqueado automaticamente
+
+## RBAC
+
+* Controle de Acesso baseado em Função
+* aplicado a:
+  * uma assinatura ou coleção de assinaturas (grupo de gerenciamento)
+  * um recurso ou grupo de recursos
+* hierárquico: os escopos filhos herdam as permissões dos pais
+
+## Zero Trust
+
+* verifica cada solicitação como se tivesse sido originada em uma rede não controlada
+* princípios:
+  * Verificar de modo explícito
+  * Privilégio mínimo, JIT (Just in Time) e JEA (Just Enough Access)
+  * Pressupor violação
+
+## Defesa em Profundidade
+
+* Camadas
+* Física **~>** Identidade e acesso **~>** perímetro (DDoS) **~>** rede (comunicação) **~>** computação (vms e dispositivos) **~>** aplicativo **~>** dados 
+
+## Microsoft Defender
+
+* nativo do Azure
+* pode ser implantado localmente e em outras nuvens
+* princípios:
+  * Avaliar contínuamente
+  * Proteger
+  * Defender
 
 # 8 - Custos
 
