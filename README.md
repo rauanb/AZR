@@ -1,4 +1,4 @@
-# AZR - 7/11
+# AZR
 # 1 - Computação em Nuvem
 
 * Entrega de serviços de computação pela internet
@@ -365,16 +365,118 @@
 
 # 8 - Custos
 
-43min
+* Redução do CapEx (depesa de capital) e automento do OpEx (despesa de operação)
+* Reserva de uso pode gerar desconto de até 72%
+* algumas transferências de dados de entrada no Azure são gratuitos
+* saída do Azure é sempre cobrada baseando-se na Zona
+
+* **Calculadora de Preços:** estimativa de custos para provisionar recursos
+  * tem cenários de exemplo para usar como ponto de partida
+* **Calculadora TCO:** comparar custos de infra local com Azure
+  * em 3 etapas:
+    * Definir cargas de trabalho
+    * Ajustar suposições
+    * Exibir relatório
+
+## Gerenciamento de Custos
+
+* Custos dos recursos provisionados
+* Alertas de custos, de crédito (para Contratos Enterprise) e de cota por departamento
+* Tendência de gastos
+* Pode ser configurada modificação ou suspensão de um recurso ao atingir um limite de orçamento
+* É possível adicionar marcas (tags) em recursos para organização e automações
+  * Marcas são conjuntos nome-valor
+  * Marcas não são herdadas
 
 # 9 - Governança e Conformidade
 
-34min
+## Purview
+
+* Exibição unificada de informações
+* Descoberta automatizada multinuvem
+* **Soluções de Risco e Conformidade**
+  * Proteção de dados confidenciais entre nuvens
+  * Conformidade Regulatória
+* **Governança de Dados Unificada**
+  * Gerenciamento de dados em Bancos diversos (inclusive AWS S3)
+  * Mapa de patrimônio
+  * Localização de dados confidenciais
+
+## Policy
+
+* Criar e gerenciar políticas que controlam ou auditam recursos
+* **Iniciativas:** grupos de políticas relacionadas
+* Realça os recursos que não estão em conformidade com as políticas criadas pelo usuário
+* Pode ser configurado para impedir a criação de um recurso em não confirmidade
+* As políticas são herdadas
+* O Azure pode ajustar automaticamente recursos para entrarem em conformidade. Exemplo: adicionar uma marca à todos os recursos de um grupo
+
+## Bloqueio de Recursos
+
+* Proteção contra exclusões ou alterações mesmo com permissões
+* São herdados
+* Podem ser aplicados a um recurso, a um grupo de recursos ou a toda a assinatura
+* Tipos:
+  * Bloqueio somente de exclusão
+  * Bloqueio de exclusão e alteração **~>** readonly
+* Ao tentar alterar um recurso aparace uma mensagem informando o bloqueio
+* Para alterar um recurso, o bloqueio deve ser retirado
+
+## Portal de Confiança do Serviço
+
+* Biblioteca de recursos e ferramentas sobre segurança, privacidade e conformidade
 
 # 10 - Gerenciamento de Recursos
 
-22min
+## Portal Azure
+
+* Disponível em todos os datacenters **~>** resiliente à falhas
+* Não requer tempo de inatividade para manutenção
+
+## Cloud Shell
+
+* Shell pelo navegador
+* Pode ser usado em PowerShell ou CLI do Azure (Bash)
+  * Ambas porem ser instaladas localmente em Windows, Linux e Mac
+* Autenticado pelas credenciais do navegador
+
+## Azure Arc
+
+* Gerenciamento de várias nuvens
+  * Servidores
+  * Clusters Kubernetes
+  * SQL Server
+
+## Azure Resource Manager (ARM)
+
+* Toda interação com recursos passa pelo ARM
+* Infra as Code com modelos declarativos em JSON
+* Aplicar marcas, atribuir a grupos, controle de acesso
+* Modelos ARM ou Bicep
+  * **Bicep:** linguagem declarativa mais simples
 
 # 11 - Monitoramento
 
-13min
+## Assistente do Azure
+
+* Avalia os recursos em uso e faz recomendações
+* Categorias: confiabilidade, segurança, desempenho, excelência operacional e custo
+
+## Integridade do Serviço
+
+* Informações da infraestrutura global do Azure
+* Tanto recursos implantados na assinatura quanto gerais
+* Armazena históricos
+* Serviços:
+  * **Status:** informações globais de interrupções de serviços
+  * **Integridade do Serviço:** informações dos serviços e regiões da sua assinatura
+  * **Resource Health:** informações de cada recurso utilizado na sua assinatura
+
+## Azure Monitor
+
+* Coletar, visualizar e analisar dados sobre seus recursos
+* Compatível com recursos locais e várias nuvens
+* Os dados podem disparar alertas, emails ou uma ação corretiva
+* **Application Insights:** monitoramento de aplicativo
+  * Instalado por SDK ou agente
+  * Monitora tempo de resposta e taxa de falha
