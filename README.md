@@ -481,3 +481,12 @@
 * **Application Insights:** monitoramento de aplicativo
   * Instalado por SDK ou agente
   * Monitora tempo de resposta e taxa de falha
+
+* ## Prova
+
+* Quais componentes são criados em uma assinatura? Recursos e grupo de recursos
+* Relatório de cobrança e faturas separados? Subscriptions
+* Conectar recurso a uma rede virtual? Pontos de extremidade
+* Acessar recursos a partir de clientes aprovados? Acesso condicional
+* Avalia os recursos e faz recomendações? Assistente do Azure
+* Informações sobre interrupção de serviço? Avisos de integridade
