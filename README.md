@@ -74,6 +74,7 @@
 
 * provedor é responsável pela instalação, licenciamento e manutenção do SO, banco de dados e ferramentas de desenvolvimento
 * semelhante a um computador no domínio: o departamento de TI (provedor) cuida das atualizações e SO
+* Banco de Dados SQL
 * **cenários:** estrutura de desenvolvimento e Análise de Dados (BI)
 
 ## Software as a Service
